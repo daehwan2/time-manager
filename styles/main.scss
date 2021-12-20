@@ -1,0 +1,66 @@
+@import "./base/reset";
+
+$minuteLength: 500px;
+
+.timer {
+  width: $minuteLength;
+  height: $minuteLength;
+  margin: auto;
+  position: relative;
+  &-minute-hand-container {
+    position: absolute;
+    right: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1px;
+    height: $minuteLength;
+    z-index: 400;
+
+    transform: rotate(6deg);
+    .timer-minute-hand {
+      height: 50%;
+      background-color: gray;
+    }
+  }
+  &-minute {
+    position: absolute;
+    right: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1px;
+    height: $minuteLength;
+    background-color: black;
+
+    &-0 {
+      height: 50%;
+      background-color: blue;
+    }
+
+    &-30 {
+      height: 50%;
+      background-color: red;
+    }
+  }
+  @for $i from 0 through 30 {
+    .timer-minute:nth-child(#{$i + 1}) {
+      transform: rotate(#{-6 * $i}deg);
+      @if ($i % 5 == 0) {
+        width: 3px;
+      }
+    }
+  }
+
+  &-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // z-index: 2;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+}
