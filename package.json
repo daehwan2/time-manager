@@ -1,0 +1,22 @@
+{
+  "name": "time-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w styles/main.scss ./style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daehwan2/time-manager.git"
+  },
+  "author": "Daehwan2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daehwan2/time-manager/issues"
+  },
+  "homepage": "https://github.com/daehwan2/time-manager#readme",
+  "dependencies": {
+    "node-sass": "^7.0.0"
+  }
+}
