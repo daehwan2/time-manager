@@ -18,14 +18,55 @@ const timerCircle_div = document.createElement("div");
 timerCircle_div.classList.add("timer-circle");
 timer_div.appendChild(timerCircle_div);
 
-const timerMinuteHandContainer_div = document.createElement("div");
-timerMinuteHandContainer_div.classList.add("timer-minute-hand-container");
-const timerMinuteHand_div = document.createElement("div");
-timerMinuteHand_div.classList.add("timer-minute-hand");
-timerMinuteHandContainer_div.appendChild(timerMinuteHand_div);
-timer_div.appendChild(timerMinuteHandContainer_div);
-let minute = 0;
-setInterval(() => {
-  timerMinuteHandContainer_div.style = `transform: rotate(${minute}deg)`;
-  minute += 0.1;
-}, 10);
+for (let i = 0; i < 720; i++) {
+  const timerFillContainer_div = document.createElement("div");
+  timerFillContainer_div.classList.add(`timer-fill-container-${i}`);
+  const timerFill_div = document.createElement("timer-fill");
+  timerFill_div.classList.add("timer-fill");
+
+  timerFillContainer_div.appendChild(timerFill_div);
+  timer_div.appendChild(timerFillContainer_div);
+}
+let select = 0;
+for (let i = 0; i < 60; i++) {
+  const timerMinute = document.querySelector(`.timer-minute-${i}`);
+  timerMinute.addEventListener("click", (event) => {
+    select = i * 12;
+    //초기화
+    clearInterval(timeInterval);
+    for (let j = 0; j < 720; j++) {
+      const timerFillContainer = document.querySelector(
+        `.timer-fill-container-${j}`
+      );
+      if (timerFillContainer.classList.contains("is-active")) {
+        timerFillContainer.classList.remove("is-active");
+      }
+    }
+    for (let j = 0; j < i * 12; j++) {
+      const timerFillContainer = document.querySelector(
+        `.timer-fill-container-${j}`
+      );
+      if (!timerFillContainer.classList.contains("is-active")) {
+        timerFillContainer.classList.add("is-active");
+      }
+    }
+  });
+}
+
+const timeFlow = () => {
+  if (select === 0) {
+    select = 1;
+    clearInterval(timeInterval);
+    alert("종료되었습니다 😎");
+  }
+  const timerFillContainer = document.querySelector(
+    `.timer-fill-container-${select}`
+  );
+  timerFillContainer.classList.remove("is-active");
+  select--;
+};
+let timeInterval;
+const startBtn = document.querySelector(".btn-start");
+startBtn.addEventListener("click", () => {
+  timeInterval = setInterval(timeFlow, 5000);
+});

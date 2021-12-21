@@ -1,3 +1,5 @@
+@import "./constants/z-index";
+
 @import "./base/reset";
 
 $minuteLength: 500px;
@@ -7,22 +9,6 @@ $minuteLength: 500px;
   height: $minuteLength;
   margin: auto;
   position: relative;
-  &-minute-hand-container {
-    position: absolute;
-    right: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 1px;
-    height: $minuteLength;
-    z-index: 400;
-
-    transform: rotate(6deg);
-    .timer-minute-hand {
-      height: 50%;
-      background-color: gray;
-    }
-  }
   &-minute {
     position: absolute;
     right: 50%;
@@ -32,15 +18,13 @@ $minuteLength: 500px;
     width: 1px;
     height: $minuteLength;
     background-color: black;
+    z-index: $timer-minute-level;
 
-    &-0 {
-      height: 50%;
-      background-color: blue;
-    }
-
-    &-30 {
-      height: 50%;
-      background-color: red;
+    @for $i from 0 through 59 {
+      &-#{$i} {
+        height: 50%;
+        background-color: blue;
+      }
     }
   }
   @for $i from 0 through 30 {
@@ -57,10 +41,35 @@ $minuteLength: 500px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // z-index: 2;
+    z-index: $circle-level;
     width: 90%;
     height: 90%;
     border-radius: 50%;
     background-color: #fff;
+  }
+  @for $i from 0 through 720 {
+    &-fill-container-#{$i} {
+      position: absolute;
+      right: 50%;
+      // display: flex;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 2px;
+      height: $minuteLength;
+      z-index: 500;
+      transform: rotate(#{$i * -0.5}deg);
+      z-index: $fill-level;
+      pointer-events: none;
+      &.is-active {
+        display: flex;
+      }
+    }
+
+    .timer-fill {
+      height: 50%;
+      background-color: red;
+      opacity: 0.5;
+    }
   }
 }
