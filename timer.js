@@ -33,6 +33,7 @@ for (let i = 0; i < 60; i++) {
   timerMinute.addEventListener("click", (event) => {
     select = i * 12;
     //초기화
+    document.querySelector(".btn-start").innerText = "Start";
     clearInterval(timeInterval);
     for (let j = 0; j < 720; j++) {
       const timerFillContainer = document.querySelector(
@@ -67,6 +68,20 @@ const timeFlow = () => {
 };
 let timeInterval;
 const startBtn = document.querySelector(".btn-start");
-startBtn.addEventListener("click", () => {
-  timeInterval = setInterval(timeFlow, 5000);
+startBtn.addEventListener("click", (event) => {
+  if (event.target.innerText === "Start") {
+    event.target.innerText = "Stop";
+    timeInterval = setInterval(timeFlow, 5000);
+  } else {
+    event.target.innerText = "Start";
+    clearInterval(timeInterval);
+  }
 });
+
+//숫자 만들기
+for (let i = 0; i <= 55; i += 5) {
+  const minuteNum_div = document.createElement("div");
+  minuteNum_div.classList.add(`minute-num-${i}`);
+  minuteNum_div.innerText = `${i}`;
+  timer_div.appendChild(minuteNum_div);
+}
