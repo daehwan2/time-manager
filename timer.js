@@ -32,6 +32,9 @@ for (let i = 0; i < 60; i++) {
   const timerMinute = document.querySelector(`.timer-minute-${i}`);
   timerMinute.addEventListener("click", (event) => {
     select = i * 12;
+    if (i === 0) {
+      select = 719;
+    }
     //초기화
     document.querySelector(".btn-start").innerText = "Start";
     clearInterval(timeInterval);
@@ -43,7 +46,7 @@ for (let i = 0; i < 60; i++) {
         timerFillContainer.classList.remove("is-active");
       }
     }
-    for (let j = 0; j < i * 12; j++) {
+    for (let j = 0; j < select; j++) {
       const timerFillContainer = document.querySelector(
         `.timer-fill-container-${j}`
       );
