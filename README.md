@@ -17,7 +17,7 @@
     해야할 일을 추가, 수정, 삭제 할수 있는 기능.
 
 - ## 결과물 캡쳐
-  ![캡쳐](./images/cap.png)
+  ![cap](https://user-images.githubusercontent.com/53414542/147123745-024b66d7-9703-4047-aa9c-cc16031e0118.PNG)
 
 ---
 
