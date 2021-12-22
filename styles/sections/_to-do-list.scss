@@ -1,0 +1,25 @@
+.todo {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  &-input-container {
+    text-align: center;
+  }
+  &-text {
+    border-bottom: 2px solid black;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-delete-container {
+    position: relative;
+    .todo-delete-all-button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: red;
+    }
+  }
+}

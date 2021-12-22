@@ -7,9 +7,30 @@
     <title>😁Time MAnager</title>
   </head>
   <body>
-    <div class="timer"></div>
+    <div class="gnb">
+      <h1>😁Time Manager</h1>
+    </div>
+    <section class="timer-section">
+      <h1 style="text-align: center">구글 타이머</h1>
+      <div class="timer-container">
+        <div class="timer"></div>
+      </div>
+      <button class="btn-start" type="button">Start</button>
+    </section>
 
-    <button class="btn-start" type="button">Start</button>
+    <section class="todo">
+      <h1 style="text-align: center">무엇을 해야하나요?</h1>
+      <div class="todo-input-container">
+        <input class="todo-text" type="text" />
+        <button class="todo-button" type="button">추가</button>
+      </div>
+      <ul class="todo-list"></ul>
+      <div class="todo-delete-container">
+        <button class="todo-delete-all-button" type="button">전체삭제</button>
+      </div>
+    </section>
+
     <script src="timer.js"></script>
+    <script src="to-do-list.js"></script>
   </body>
 </html>
