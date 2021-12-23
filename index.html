@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"
+    />
+
     <link rel="stylesheet" href="style.css" />
     <title>😁Time MAnager</title>
   </head>
@@ -10,27 +15,37 @@
     <div class="gnb">
       <h1>😁Time Manager</h1>
     </div>
-    <section class="timer-section">
-      <h1 style="text-align: center">구글 타이머</h1>
-      <div class="timer-container">
-        <div class="timer"></div>
-      </div>
-      <button class="btn-start" type="button">Start</button>
-    </section>
+    <div class="my-slider">
+      <section class="timer-section">
+        <h1 style="text-align: center">구글 타이머</h1>
+        <div class="timer-container">
+          <div class="timer"></div>
+        </div>
+        <button class="btn-start" type="button">Start</button>
+      </section>
 
-    <section class="todo">
-      <h1 style="text-align: center">무엇을 해야하나요?</h1>
-      <div class="todo-input-container">
-        <input class="todo-text" type="text" />
-        <button class="todo-button" type="button">추가</button>
-      </div>
-      <ul class="todo-list"></ul>
-      <div class="todo-delete-container">
-        <button class="todo-delete-all-button" type="button">전체삭제</button>
-      </div>
-    </section>
-
+      <section>
+        <div class="todo">
+          <h1 class="date"></h1>
+          <h1 class="question" style="text-align: center">
+            무엇을 해야하나요?
+          </h1>
+          <div class="todo-input-container">
+            <input class="todo-text" type="text" />
+            <button class="todo-button" type="button">추가</button>
+          </div>
+          <ul class="todo-list"></ul>
+          <div class="todo-delete-container">
+            <button class="todo-delete-all-button" type="button">
+              전체삭제
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <script src="timer.js"></script>
     <script src="to-do-list.js"></script>
+    <script src="carousel.js"></script>
   </body>
 </html>
