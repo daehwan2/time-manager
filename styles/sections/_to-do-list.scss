@@ -1,17 +1,25 @@
 .todo {
   width: 300px;
-  height: 300px;
+  // height: 300px;
   margin: 0 auto;
+  margin-bottom: 100px;
+  .date,
+  .question {
+    text-align: center;
+    margin-bottom: 5px;
+  }
   &-input-container {
     text-align: center;
   }
   &-text {
     border-bottom: 2px solid black;
+    margin-bottom: 10px;
   }
 
   &-item {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
   }
   &-delete-container {
     position: relative;

@@ -3,11 +3,49 @@ const todoText = document.querySelector(".todo-text");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const todoDeleteAllBtn = document.querySelector(".todo-delete-all-button");
+const dateTag = document.querySelector(".date");
 let datas;
 let id;
-const loadData = () => {
-  datas = JSON.parse(localStorage.getItem("datas"));
+const checkFunc = (event) => {
+  if (event.target.checked) {
+    event.target.parentElement.style =
+      "display:flex; text-decoration:line-through;";
 
+    for (let i = 0; i < datas.length; i++) {
+      console.log(datas[i].id, event.target.parentElement.parentElement.id);
+      if (datas[i].id === Number(event.target.parentElement.parentElement.id)) {
+        datas[i].isDo = true;
+        break;
+      }
+    }
+    console.log(datas);
+  } else {
+    event.target.parentElement.style = "display:flex;";
+
+    for (let i = 0; i < datas.length; i++) {
+      if (datas[i].id === Number(event.target.parentElement.parentElement.id)) {
+        datas[i].isDo = false;
+      }
+    }
+  }
+  localStorage.setItem("datas", JSON.stringify(datas));
+};
+
+const getToday = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+  const day = today.getDay();
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  dateTag.innerText = `${year}년 ${month}월 ${date}일 (${days[day]})`;
+};
+const loadData = () => {
+  //오늘날짜 가져오기
+  getToday();
+
+  //리스트 받아오기
+  datas = JSON.parse(localStorage.getItem("datas"));
   if (datas) {
     console.log(datas);
     id = datas[datas.length - 1].id + 1;
@@ -30,7 +68,18 @@ const paintData = () => {
 
       deleteBtn.addEventListener("click", deleteFunc);
       deleteBtn.innerText = "삭제";
-      todoItem.innerHTML = "<div>" + text + "</div>";
+      if (datas[i].isDo) {
+        todoItem.innerHTML =
+          "<div class='check-box' style='display:flex; text-decoration:line-through'><input type='checkbox' checked onclick='checkFunc(event)' style='margin:auto; margin-right:4px'/> <div>" +
+          text +
+          "</div></div>";
+      } else {
+        todoItem.innerHTML =
+          "<div class='check-box' style='display:flex'><input type='checkbox' onclick='checkFunc(event)' style='margin:auto; margin-right:4px'/> <div>" +
+          text +
+          "</div></div>";
+      }
+
       todoItem.appendChild(deleteBtn);
       todoList.appendChild(todoItem);
     }
@@ -62,10 +111,13 @@ todoButton.addEventListener("click", () => {
     deleteBtn.classList.add("delete-button");
     deleteBtn.innerText = "삭제";
     deleteBtn.addEventListener("click", deleteFunc);
-    todoItem.innerHTML = "<div>" + text + "</div>";
+    todoItem.innerHTML =
+      "<div class='check-box' style='display:flex'><input type='checkbox' onclick='checkFunc(event)' style='margin:auto; margin-right:4px'/> <div>" +
+      text +
+      "</div></div>";
     todoItem.appendChild(deleteBtn);
     todoList.appendChild(todoItem);
-    const data = { id: id, content: text };
+    const data = { id: id, content: text, isDo: false };
     datas.push(data);
     localStorage.setItem("datas", JSON.stringify(datas));
   } else {
