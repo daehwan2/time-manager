@@ -4,5 +4,5 @@ const slider = tns({
   slideBy: "page",
   mode: "gallery",
   // autoplay: true
-  //   touch: false,
+  touch: false,
 });
